@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+
+  php-fpm:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../laravel:/var/www:cached
+    working_dir: /var/www
+        
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ../laravel:/var/www:cached
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - php-fpm
+        
+  database:
+    build:
+      context: ./database
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+
+  composer:
+    restart: 'no'
+    image: 'composer'
+    command: install
+    volumes:
+      - ../laravel:/app
