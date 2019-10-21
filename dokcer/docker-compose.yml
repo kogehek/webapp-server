@@ -31,10 +31,9 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
 
-
-  composer:
-    restart: 'no'
-    image: 'composer'
-    command: install
-    volumes:
-      - ../laravel:/app
+  # composer:
+  #   restart: 'no'
+  #   image: 'composer'
+  #   command: install
+  #   volumes:
+  #     - ../laravel:/app
