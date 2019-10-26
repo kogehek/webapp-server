@@ -10,6 +10,8 @@ RUN apt-get install -y \
     curl \
     sudo \
     unzip \
+    openssl \
+    libpq-dev\
     libicu-dev \
     libbz2-dev \
     libpng-dev \
@@ -19,9 +21,10 @@ RUN apt-get install -y \
     libreadline-dev \
     libfreetype6-dev \
     g++
-
+#
 # start with base php config, then add extensions
 RUN docker-php-ext-install \
+    pdo \
     bz2 \
     intl \
     iconv \
@@ -29,6 +32,8 @@ RUN docker-php-ext-install \
     opcache \
     calendar \
     pdo_mysql \
+    pdo_pgsql \
+    pgsql \
     zip
 
 # composer
