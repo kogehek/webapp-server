@@ -1,7 +1,7 @@
 #!/bin/bash
 ROOT_PATH=$(pwd)
 
-cd laravel
+cd laravel || exit
 if [ -f ".env" ]
 then
 	echo ".env found laravel."
@@ -10,8 +10,8 @@ else
     cp .env.example .env
 fi
 
-cd $ROOT_PATH
-cd dokcer
+cd "$ROOT_PATH" || exit
+cd dokcer || exit
 if [ -f ".env" ]
 then
 	echo ".env found in docker."
@@ -28,6 +28,7 @@ docker-compose exec --user devuser php-fpm php artisan optimize
 docker-compose exec --user devuser php-fpm php artisan config:cache
 docker-compose exec --user devuser php-fpm php artisan route:clear
 docker-compose exec --user devuser php-fpm php artisan migrate
+docker-compose exec --user devuser php-fpm php artisan passport:install
 
 # docker-compose exec --user devuser php-fpm php artisan config:cache // Production
 

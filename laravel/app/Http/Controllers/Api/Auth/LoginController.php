@@ -23,7 +23,7 @@ class LoginController extends Controller
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'You cannot sign with those credentials',
-                'errors' => 'Unauthorised'
+                'errors' => 'Unauthorised',
             ], 401);
         }
 
@@ -38,7 +38,7 @@ class LoginController extends Controller
         return response()->json([
             'token_type' => 'Bearer',
             'token' => $token->accessToken,
-            'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString()
+            'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString(),
         ], 200);
     }
 }
