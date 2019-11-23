@@ -22,12 +22,13 @@ fi
 
 docker-compose up --build -d
 docker-compose exec --user devuser php-fpm composer install
+docker-compose exec --user devuser php-fpm php artisan migrate:refresh
 docker-compose exec --user devuser php-fpm php artisan key:generate
 docker-compose exec --user devuser php-fpm php artisan clear-compiled
 docker-compose exec --user devuser php-fpm php artisan optimize
 docker-compose exec --user devuser php-fpm php artisan config:cache
 docker-compose exec --user devuser php-fpm php artisan route:clear
-docker-compose exec --user devuser php-fpm php artisan migrate
+#docker-compose exec --user devuser php-fpm php artisan migrate
 docker-compose exec --user devuser php-fpm php artisan passport:install
 
 # docker-compose exec --user devuser php-fpm php artisan config:cache // Production
