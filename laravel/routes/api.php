@@ -12,11 +12,18 @@
 |
 */
 
-
 Route::group(['namespace' => 'Api'], function() {
-    Route::group(['namespace' => 'Auth'], function() {
+    Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'name' => 'et'], function() {
+
         Route::post('register', 'RegisterController');
         Route::post('login', 'LoginController');
-        Route::post('logout', 'LogoutController')->middleware('auth:api');
+        Route::get('activate/{token}', 'RegisterActivate')->name('auth.activate');
+
+        Route::group([
+            'middleware' => 'auth:api',
+        ], function() {
+            Route::post('logout', 'LogoutController');
+        });
+
     });
 });

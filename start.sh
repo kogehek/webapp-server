@@ -11,7 +11,7 @@ else
 fi
 
 cd "$ROOT_PATH" || exit
-cd dokcer || exit
+cd docker || exit
 if [ -f ".env" ]
 then
 	echo ".env found in docker."

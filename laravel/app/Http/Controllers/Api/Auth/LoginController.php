@@ -19,6 +19,7 @@ class LoginController extends Controller
     public function __invoke(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $credentials['active'] = 1;
 
         if (!Auth::attempt($credentials)) {
             return response()->json([

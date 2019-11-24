@@ -11,4 +11,8 @@
 |
 */
 
+Route::get('/test', function () {
+    dd(route('auth.activate', ['token' => 'test']));
+});
+
 Route::get('/', 'WelcomeControlle@index');
