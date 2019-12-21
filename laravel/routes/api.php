@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Api'], function() {
 
         Route::post('register', 'RegisterController');
         Route::post('login', 'LoginController');
-        Route::get('activate/{token}', 'RegisterActivate')->name('auth.activate');
+        Route::get('activate/{token}', 'ActivateController')->name('auth.activate');
 
         Route::group([
             'middleware' => 'auth:api',

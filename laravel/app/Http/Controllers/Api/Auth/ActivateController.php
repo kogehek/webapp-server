@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api\auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\User;
 
-class RegisterActivate extends Controller
+class ActivateController extends Controller
 {
     public function __invoke($token)
     {
@@ -21,7 +20,7 @@ class RegisterActivate extends Controller
             $user->save();
             return response()->json([
                 'message' => 'Successfully activated by email.'
-            ], 404);
+            ], 200);
         }
 
     }

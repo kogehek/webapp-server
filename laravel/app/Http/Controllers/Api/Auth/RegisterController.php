@@ -25,10 +25,10 @@ class RegisterController extends Controller
             ['activation_token' => Str::random(60)]
         ));
 
-        $user->notify(new SignupActivate($user));
+        $user->notify(new SignupActivate());
 
         return response()->json([
-            'message' => 'You were successfully registered. Use your email and password to sign in.',
+            'message' => 'Please check email for activation account.',
         ], 200);
     }
 }
